@@ -10,6 +10,8 @@
 <body>
     <h1>Logger Page</h1>
     <p>{{ log_message }}</p>
+    <label for="logText">Log Message:</label>
+    <input type="text" id="logText" value="{{ log_message }}" readonly>
 
     <script>
         console.log("Log Message: {{ log_message }}");
