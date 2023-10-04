@@ -11,8 +11,11 @@
     <h1>Logger Page</h1>
     <p>{{ log_message }}</p>
     <label for="logText">Log Message:</label>
-    <input type="text" id="logText" value="{{ log_message }}" readonly>
-
+    <form method="POST">
+        <textarea name="Request"></textarea>
+        <input type="submit" value="submit">
+    </form>
+    <button name="Request" value="ganalytics" type="submit">Click me to send a GET Request to Google</button>
     <script>
         console.log("Log Message: {{ log_message }}");
     </script>
