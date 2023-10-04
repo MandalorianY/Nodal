@@ -1,42 +1,21 @@
-from flask import Flask
+import logging
+from flask import Flask, render_template
 
 app = Flask(__name__)
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 @app.route("/")
 def root():
-    return """ 
-   <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Hello from Space  🚀 !</title>
-            
-           <!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-ELHCY793ER"></script>
-            <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+    return render_template("index.html")
+    
 
-            gtag('config', 'G-ELHCY793ER');
-            </script>
-        </head>
-        <body>
-            <h1>Hello from Space! 🚀</h1>
-            <button id="analyticsButton">Click me to send an event</button>
+@app.route("/logger")
+def logger():
+    logging.info("This is a log message")
+    log_message = "This is a log message"
+    return render_template("logger.html", log_message=log_message)
 
-            <script>
-                document.getElementById("analyticsButton").addEventListener("click", function () {
-                    gtag('event', 'button_click', {
-                        'event_category': 'Button',
-                        'event_label': 'Button Clicked'
-                    });
-                });
-            </script>
-        </body>
-        </html>
-    """
 
 if __name__ == "__main__":
     app.run(debug=True)
