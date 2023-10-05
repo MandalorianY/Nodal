@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logger Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
-    <h1>Logger Page</h1>
-    <p>{{ log_message }}</p>
-    <p> Response message: {{ response_message }}</p>
-    </p>
-    <label for="logText">Log Message:</label>
+    <h1> Logger page</h1>
+    <p>Log message: {{ log_message }}</p>
+    <p>Response message: {{ response_message }}</p>
+
     <form method="POST">
-        <textarea name="Request"></textarea>
+        <textarea name="Request" placeholder="Enter your request here"></textarea>
         <input type="submit" value="Submit">
     </form>
 
@@ -27,12 +27,7 @@
             Analytics</button>
     </form>
 
-
-
-
-    <script>
-        console.log("Log Message: {{ log_message }}");
-    </script>
+    <p id="user-count">Number of visitors: {{ user_count }}</p>
 </body>
 
 </html>

@@ -1,0 +1,30 @@
+p {
+    margin: 10px 0;
+    padding: 0 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+}
+
+input[type="submit"],
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+}
+
+p#user-count {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
