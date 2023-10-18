@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Charts</title>
+    <style>
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Charts</h1>
+    <div class="center">
+        <iframe src="{{ url_for('static', filename='trend_chart.html') }}" width="80%" height="600"></iframe>
+
+        <br>
+        <iframe src="{{ url_for('static', filename='counter_chart.html') }}" width="80%" height="600"></iframe>
+    </div>
+</body>
+
+</html>

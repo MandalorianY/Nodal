@@ -7,6 +7,12 @@ micros:
     primary: true
     run: gunicorn main:app
     dev: .venv/bin/flask --app main run
-    public : true
-
-
+    public: true
+    presets:
+      env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          description: authentication token
+          default: "nodale-424af451d4b3.json"
+        - name: GA_PROPERTY_ID
+          description: Google Analytics Property ID
+          default: "407507302"
