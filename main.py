@@ -7,25 +7,27 @@ from google.analytics.data_v1beta.types import (
     Metric,
     RunReportRequest,
 )
+import os
 import logging
 from html import unescape
 from flask import Flask, render_template, request
 import requests
+from pytrends.request import TrendReq
+
 
 app = Flask(__name__, static_url_path='/static')
-
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 credentials = service_account.Credentials.from_service_account_file(
-    'nodale-424af451d4b3.json', scopes=['https://www.googleapis.com/auth/analytics.readonly']
+    os.environ.get("GOOGLE_APPLICATION_CREDENTIALS"), scopes=['https://www.googleapis.com/auth/analytics.readonly']
 )
 
 
 def sample_run_report():
     """Runs a simple report on a Google Analytics 4 property."""
     user_count = 0
-    property_id = "407507302"
+    property_id = os.environ.get("GA_PROPERTY_ID")
     client = BetaAnalyticsDataClient(credentials=credentials)
 
     request = RunReportRequest(
@@ -46,6 +48,34 @@ def sample_run_report():
 def root():
     """Home page"""
     return render_template("index.html")
+
+@app.route('/get_chart_data', methods=['GET'])
+def get_chart_data():
+    # Load and return the csv file
+    with open('chart_data.csv') as f:
+        chart_data = f.read()
+    return chart_data
+
+
+# @app.route("/trends")
+# def Trends():
+#     """Trends page
+#     This will give a graph on a trend overy time"""
+#     pytrend = TrendReq()
+#     kw_list = ["League of legends"]
+#     pytrend.build_payload(kw_list, cat=0, timeframe='today 1-m', geo='KR')
+#     interest_over_time_df = pytrend.interest_over_time()
+#     chart_data = interest_over_time_df.to_json()
+#     print(interest_over_time_df.head(5))
+#     return render_template("Trends.html", chart_data=chart_data)
+
+
+@app.route("/charts")
+def Trends():
+    """Trends page
+    This will give several graph"""
+    return render_template("charts.html")
+
 
 
 @app.route("/logger", methods=['GET', 'POST'])
