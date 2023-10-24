@@ -32,9 +32,7 @@ def count_words_counter():
 print("Count word function ",count_words_counter())
 print("Count word with a dict",count_words_dict())
 
-# make a function to run this experiment 100 times and plot the two distributions of
-# execution times. This allows us to have more robust information (e.g: mean and
-# variance) using pandas and plotly.
+# run this experiment 100 times 
 def experiment():
     dict_times = []
     counter_times = []

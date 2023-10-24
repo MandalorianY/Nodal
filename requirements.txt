@@ -3,5 +3,3 @@ gunicorn
 requests
 google-auth
 google-analytics-data
-pytrends
-pandas
